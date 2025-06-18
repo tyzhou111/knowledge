@@ -1,0 +1,23 @@
+{
+  "name": "doomslayer",
+  "packageManager": "yarn@4.6.0",
+  "devDependencies": {
+    "@alauda/doom": "^0.23.5",
+    "@rspress/shared": "^1.44.0",
+    "@tailwindcss/postcss": "^4.1.8",
+    "autoprefixer": "^10.4.21",
+    "hexo-util": "^3.3.0",
+    "postcss": "^8.5.4",
+    "rspress": "^1.44.0",
+    "tailwindcss": "^4.1.8",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "dev": "doom dev",
+    "build": "doom build",
+    "new": "doom new",
+    "serve": "doom serve",
+    "translate": "doom translate",
+    "export": "doom export"
+  }
+}
