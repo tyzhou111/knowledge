@@ -1,11 +1,6 @@
-import Theme from "rspress/theme";
 import HomeLayout from "./layout/HomeLayout";
 import Layout from "./layout";
 
+export { Layout, HomeLayout };
+// 重导出其他部分
 export * from "rspress/theme";
-
-export default {
-  ...Theme,
-  Layout,
-  HomeLayout,
-};

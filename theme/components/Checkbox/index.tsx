@@ -54,7 +54,7 @@ export default forwardRef<HTMLInputElement, CheckboxProps>(
             focus:ring-offset-2 
             transition-all 
             duration-200
-            mr-2
+            !mr-2
             ${disabled ? "bg-gray-100" : "hover:border-gray-400"}
             ${checked ? "border-blue-600 bg-blue-600" : ""}
           `}

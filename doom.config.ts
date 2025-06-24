@@ -16,9 +16,9 @@ export default defineConfig({
   ],
   themeConfig: {
     lastUpdated: true,
-    editLink:{
-      docRepoBaseUrl:"null",
-      text:"aaa"
-    }
+    editLink: {
+      docRepoBaseUrl: "null",
+      text: "aaa",
+    },
   },
 });

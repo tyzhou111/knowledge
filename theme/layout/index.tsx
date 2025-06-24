@@ -1,6 +1,7 @@
 import { Layout } from "rspress/theme";
 import { usePageData } from "rspress/runtime";
 import { useMemo } from "react";
+import HomeLayout from "./HomeLayout";
 
 export default () => {
   const { page } = usePageData();
@@ -10,5 +11,5 @@ export default () => {
     [page]
   );
 
-  return <Layout uiSwitch={uiSwitch}></Layout>;
+  return <Layout uiSwitch={uiSwitch} HomeLayout={HomeLayout}></Layout>;
 };

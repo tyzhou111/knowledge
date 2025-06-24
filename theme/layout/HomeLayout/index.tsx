@@ -1,5 +1,5 @@
-import { useI18n, usePageData } from "@rspress/runtime";
-import { ReactNode, useCallback, useState } from "react";
+import { usePageData } from "@rspress/runtime";
+import { ReactNode, useState } from "react";
 import { postInfos } from "virtual-post-data";
 import {
   LinkCard,
@@ -30,8 +30,10 @@ const HomeBanner: React.FC<BannerProps> = ({ className }) => {
   return (
     <div className={className}>
       <div className="max-w-3/5">
-        <h1 className="!text-4xl font-bold mb-6">{pageData.siteData.title}</h1>
-        <p className="text-xl font-semibold ">
+        <h1 className="!text-4xl !font-bold !mb-6">
+          {pageData.siteData.title}
+        </h1>
+        <p className="text-xl !font-semibold ">
           {pageData.siteData.description}
         </p>
       </div>
@@ -59,7 +61,6 @@ const HomeContent: React.FC = () => {
   };
 
   const kindsChange = (value: string) => {
-    console.log(selectedKinds);
     if (selectedKinds.has(value)) {
       selectedKinds.delete(value);
     } else {
@@ -68,6 +69,8 @@ const HomeContent: React.FC = () => {
     setKinds(new Set(selectedKinds));
   };
 
+  const aa = renderInlineMarkdown("asd");
+  aa;
 
   return (
     <div className="flex w-full h-[200px] relative">
@@ -113,11 +116,12 @@ const HomeContent: React.FC = () => {
         </div>
 
         {postInfos.map((post) => {
+          console.log(post.excerpt, renderInlineMarkdown(post.excerpt));
           return (
             <LinkCard
               style={{ marginBottom: "24px" }}
               title={post.title}
-              description={renderInlineMarkdown(post.excerpt)}
+              description={<div {...renderInlineMarkdown(post.excerpt)}></div>}
               href={post.route}
               key={post.route}
             ></LinkCard>
@@ -127,7 +131,6 @@ const HomeContent: React.FC = () => {
     </div>
   );
 };
-
 
 const HomeLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
