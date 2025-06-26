@@ -16,9 +16,8 @@ export default defineConfig({
   ],
   themeConfig: {
     lastUpdated: true,
-    editLink: {
-      docRepoBaseUrl: "null",
-      text: "aaa",
-    },
+    footer:{
+      message:"© 2025 Alauda Inc. All Rights Reserved."
+    }
   },
 });

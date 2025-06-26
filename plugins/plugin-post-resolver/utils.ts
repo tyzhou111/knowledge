@@ -1,4 +1,5 @@
 import path from "node:path";
+import { Marked } from "@ts-stack/markdown";
 
 export function norminalizeCategory(category: string | string[]): string[] {
   if (!category) {
@@ -26,22 +27,12 @@ export const excerptFilter = (_input: unknown): any => {
   const input = _input as { content: string; excerpt: string };
   const { content } = input;
   if (excerptSeparator.test(content)) {
-    // 根据分隔符分隔
     const index = content.search(excerptSeparator);
     input.excerpt = content.substring(0, index);
   } else {
-    // 没有分隔符，取前150个字符或者5行
-    let brIndex = 0;
-    for (let i = 0; i < 5; i++) {
-      brIndex = content.indexOf("\n", brIndex + 1);
-      if (brIndex === -1 || brIndex > 150) {
-        break;
-      }
-    }
-    if (brIndex === -1) {
-      brIndex = 150;
-    }
-    input.excerpt = content.substring(0, brIndex);
+    const html = Marked.parse(content);
+
+    input.excerpt = html.match(/<p>(.*?)<\/p>/)?.[1] || "";
   }
 };
 

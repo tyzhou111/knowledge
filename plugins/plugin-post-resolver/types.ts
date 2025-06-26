@@ -19,9 +19,9 @@ export interface PostInfo {
   // 创建时间
   date: string;
   // 分类
-  categories: string[];
+  kinds: string[];
   // 标签
-  tags: string[];
+  products: string[];
   // 文章摘要
   excerpt: string;
 }

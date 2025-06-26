@@ -62,10 +62,8 @@ export function getPostInfo(
     route: routePath,
     path: filepath,
     date: createTime.format("YYYY-MM-DD HH:mm:ss"),
-    categories: norminalizeCategory(
-      frontmatter.category || frontmatter.categories
-    ),
-    tags: norminalizeTags(frontmatter.tag || frontmatter.tags),
+    kinds: norminalizeCategory(frontmatter.kind || frontmatter.kinds),
+    products: norminalizeTags(frontmatter.product || frontmatter.products),
     excerpt: frontmatter.description || excerpt,
   };
 }
@@ -76,46 +74,6 @@ export function getPostInfo(
  */
 export function addPost(post: PostInfo) {
   postInfos.push(post);
-
-  // 添加分类
-  let currentCategories = postCategories;
-  let currentCategory: InternalPostCategory | undefined;
-  post.categories.forEach((category) => {
-    const postCategory = currentCategories.get(category);
-    if (postCategory) {
-      currentCategories = postCategory.children;
-      currentCategory = postCategory;
-    } else {
-      const newCategory: InternalPostCategory = {
-        name: category,
-        count: 0,
-        children: new Map(),
-        posts: [],
-      };
-      currentCategories.set(category, newCategory);
-      currentCategories = newCategory.children;
-      currentCategory = newCategory;
-    }
-  });
-  if (currentCategory) {
-    currentCategory.count++;
-    currentCategory.posts.push(post);
-  }
-
-  // 添加标签
-  post.tags.forEach((tag) => {
-    const postTag = postTags.get(tag);
-    if (postTag) {
-      postTag.count++;
-      postTag.posts.push(post);
-    } else {
-      postTags.set(tag, {
-        name: tag,
-        count: 1,
-        posts: [post],
-      });
-    }
-  });
 }
 
 /**

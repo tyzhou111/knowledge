@@ -26,7 +26,6 @@ export default forwardRef<HTMLInputElement, CheckboxProps>(
     const t = useI18n();
 
     const handleChange = () => {
-      console.log("zzz", label);
       onChange?.(label);
     };
 
