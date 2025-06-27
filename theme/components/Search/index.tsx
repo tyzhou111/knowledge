@@ -15,7 +15,7 @@ const Search: React.FC<SearchProps> = ({
 }) => {
   return (
     <div className={`relative max-w-full ${className}`}>
-      <div className="flex items-center rounded-[var(--rp-radius)] border border-gray-300 bg-white px-4 py-2 shadow-sm transition-all duration-200 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 hover:shadow-md dark:border-gray-600 dark:bg-gray-800">
+      <div className="flex items-center bg-[var(--rp-c-bg-mute)] rounded-[var(--rp-radius)] border border-gray-300  px-4 py-2 shadow-sm transition-all duration-200 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 hover:shadow-md">
         <svg
           className="h-5 w-5 flex-shrink-0 text-gray-400 dark:text-gray-400 mr-2"
           fill="none"

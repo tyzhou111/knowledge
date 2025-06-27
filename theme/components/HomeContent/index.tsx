@@ -2,15 +2,12 @@ import { useSearchContext } from "../../hooks/Search";
 import Checkbox from "../Checkbox";
 import { Card, useFullTextSearch } from "rspress/theme";
 import { useCallback, useMemo, useState } from "react";
-import { postInfos } from "virtual-post-data";
+import { PostInfo, postInfos } from "virtual-post-data";
+import { postProducts } from "virtual-post-postProducts";
+import { postKinds } from "virtual-post-postKinds";
 import { PostList } from "../PostList";
 import Search from "../Search";
 import Pagination from "../Pagination";
-import { useSearchParams } from "rspress/runtime";
-import { PostInfo } from "../../../plugins/plugin-post-resolver";
-
-const PRODUCTS = ["acp", "devops", "ai", "aas"];
-const KINDS = ["solution", "trouble-shooting", "article", "docs"];
 
 const SEARCHED_LIMIT = 1000;
 const PAGE_SIZE = 10;
@@ -20,12 +17,13 @@ export const HomeContent: React.FC = () => {
     products,
     kinds,
     keyword,
+    searchParams,
+    onSearchParamsChange,
     onProductsChange,
     onKindsChange,
     onKeywordChange,
   } = useSearchContext();
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const { initialized, search } = useFullTextSearch();
   const [searchedPosts, setSearchedPosts] = useState<PostInfo[]>([]);
 
@@ -38,7 +36,7 @@ export const HomeContent: React.FC = () => {
           (results[0].result || []) as Array<{ link: string }>
         ).map(({ link }) => link.split(".html")[0]);
 
-        const searchPosts = postInfos.filter((post: PostInfo) => {
+        const searchPosts = postInfos.filter((post) => {
           return searched.some((link) => {
             return post.route.endsWith(link);
           });
@@ -81,8 +79,8 @@ export const HomeContent: React.FC = () => {
   }, [searchParams]);
 
   const pageChange = useCallback(
-    (number) => setSearchParams({ page: `${number}` }),
-    [setSearchParams]
+    (number) => onSearchParamsChange({ page: `${number}` }),
+    [onSearchParamsChange]
   );
 
   const currentPageData = useMemo(() => {
@@ -120,7 +118,7 @@ export const HomeContent: React.FC = () => {
           title="Products"
           content={
             <>
-              {PRODUCTS.map((product) => (
+              {postProducts.map((product) => (
                 <Checkbox
                   key={product}
                   className="mb-2 ml-2"
@@ -137,7 +135,7 @@ export const HomeContent: React.FC = () => {
           title="Kinds"
           content={
             <>
-              {KINDS.map((kind) => (
+              {postKinds.map((kind) => (
                 <Checkbox
                   key={kind}
                   className="mb-2 ml-2"

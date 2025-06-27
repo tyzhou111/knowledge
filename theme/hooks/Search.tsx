@@ -1,12 +1,15 @@
 import { createContext, useCallback, useContext, useState } from "react";
+import { useSearchParams } from "rspress/runtime";
 
 type SearchCondition = {
   products: Set<string>;
   kinds: Set<string>;
   keyword: string;
+  searchParams: URLSearchParams;
   onProductsChange: (products: Set<string>) => void;
   onKindsChange: (kinds: Set<string>) => void;
   onKeywordChange: (keyword: string) => void;
+  onSearchParamsChange: (params: Record<string, any>) => void;
 };
 
 // 创建 Context
@@ -29,10 +32,25 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
     parseJson(sessionStorage.getItem("ac-knowledge-kinds") || "") || []
   ) as string[];
   const w = sessionStorage.getItem("ac-knowledge-keyword") || "";
-
+  const s = parseJson(
+    sessionStorage.getItem("ac-knowledge-searchParams") || ""
+  );
+  console.log("s", s);
+  const [searchParams, setSearchParams] = useSearchParams(s || {});
   const [products, setProducts] = useState<Set<string>>(new Set(p));
   const [kinds, setKinds] = useState<Set<string>>(new Set(k));
   const [keyword, setKeyword] = useState<string>(w);
+
+  const onSearchParamsChange = useCallback(
+    (params: Record<string, any>) => {
+      sessionStorage.setItem(
+        "ac-knowledge-searchParams",
+        JSON.stringify(params)
+      );
+      setSearchParams(params);
+    },
+    [setSearchParams]
+  );
 
   const onProductsChange = useCallback(
     (products: Set<string>) => {
@@ -68,9 +86,11 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
         products,
         kinds,
         keyword,
+        searchParams,
         onProductsChange,
         onKindsChange,
         onKeywordChange,
+        onSearchParamsChange,
       }}
     >
       {children}

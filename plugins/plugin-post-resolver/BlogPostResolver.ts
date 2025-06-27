@@ -3,14 +3,15 @@ import fs, { PathLike } from "node:fs";
 import { RspressPlugin } from "@rspress/shared";
 import {
   addPost,
-  getCategoriesArray,
   getPostInfo,
-  getTagsArray,
   postInfos,
+  postKinds,
+  postProducts,
   resetPostInfo,
   sortPostInfos,
 } from "./PostData";
 import { PluginOptions } from "./types";
+import { deDuplicate } from "./utils";
 
 function traverseFolder(
   folderPath: PathLike,
@@ -44,32 +45,18 @@ export function blogPostResolver(options?: PluginOptions): RspressPlugin {
 
       sortPostInfos();
     },
-    extendPageData(pageData) {
-      if (pageData.routePath === "/") {
-        return;
-      }
-
-      const index = postInfos.findIndex(
-        (postInfo) => postInfo.route === pageData.routePath
-      );
-
-      const postInfo = postInfos[index];
-      Object.assign(pageData, {
-        date: postInfo?.date,
-        categories: postInfo?.categories,
-        tags: postInfo?.tags,
-      });
-    },
     addRuntimeModules() {
       return {
         "virtual-post-data": `
           export const postInfos = ${JSON.stringify(postInfos)}
         `,
-        "virtual-post-categories": `
-          export const postCategories = ${JSON.stringify(getCategoriesArray())}
+        "virtual-post-postProducts": `
+          export const postProducts = ${JSON.stringify(
+            deDuplicate(postProducts)
+          )}
         `,
-        "virtual-post-tags": `
-          export const postTags = ${JSON.stringify(getTagsArray())}
+        "virtual-post-postKinds": `
+          export const postKinds = ${JSON.stringify(deDuplicate(postKinds))}
         `,
       };
     },
