@@ -1149,7 +1149,7 @@ error during command execution: 2 validation errors occurred
 
 Generate the Rego file to verify the builder info.
 
-```rego
+```
 package signature
 
 default allow = false
