@@ -4,7 +4,7 @@
 
 ## 1.1 Deployment Architecture
 
-![image-20250527171909944](images.assets/image-20250527171909944.png)
+![image-20250527171909944](../assets/image-20250527171909944.png)
 
 ## **1.2 Resource Preparation**
 
@@ -397,7 +397,7 @@ Perform the same steps on all four clusters to create a gateway route on each.
 
 After deploying HAProxy, we need to configure the ingress gateway addresses for the 4 clusters. The access addresses can be found in "Step 4: Create Ingress Gateway." 
 
-For example:![](images.assets/image-2025-5-28_19-1-46.png)
+For example:![](../assets/image-2025-5-28_19-1-46.png)
 
 
 
@@ -681,21 +681,21 @@ The benchmark test results serve as a crucial indicator for identifying abnormal
 
   The core cluster dbs-dca-c1 processes requests at 10 qps.
 
-<img src="images.assets/image-test_case1-1.png" alt="image-test_case1-1"  />
+<img src="../assets/image-test_case1-1.png" alt="image-test_case1-1"  />
 
 
 
 - 10 qps load balancing of these requests between the two clusters in the same region.
 
-![image-test_case1-2](images.assets/image-test_case1-2.png)
+![image-test_case1-2](../assets/image-test_case1-2.png)
 
 Service Request Success Rate:
 
-***![image-test_case1-3](images.assets/image-test_case1-3.png)***
+***![image-test_case1-3](../assets/image-test_case1-3.png)***
 
 P99 Service Latency:
 
-![image-test_case1-4](images.assets/image-test_case1-4.png)
+![image-test_case1-4](../assets/image-test_case1-4.png)
 
 
 
@@ -707,7 +707,7 @@ P99 Service Latency:
 
 ## 3.1 Test Goals
 
-![image-20250527194307277](images.assets/image-20250527194307277.png)
+![image-20250527194307277](../assets/image-20250527194307277.png)
 
 Verify cross-region data center-level failover capability, with RTO ≤ 90s and RPO = 0.
 
@@ -748,25 +748,25 @@ Verify cross-region data center-level failover capability, with RTO ≤ 90s and 
 
 - After all clusters in DC-A suffers power-outage , haproxy directs requests to the two clusters in region DC-B, each of which will experience a 10 QPS increase in traffic.
 
-![image-test_case2-1](images.assets/image-test_case2-1.png)
+![image-test_case2-1](../assets/image-test_case2-1.png)
 
 
 
 - The 20 qps traffic of each cluster will be load-balanced between the two clusters in the same region.
 
-![image-test_case2-2](images.assets/image-test_case2-2.png)
+![image-test_case2-2](../assets/image-test_case2-2.png)
 
 
 
 - Service Request Success Rate
 
-![image-test_case2-3](images.assets/image-test_case2-3.png)
+![image-test_case2-3](../assets/image-test_case2-3.png)
 
 
 
 - P99 Service Latency
 
-![image-test_case2-4](images.assets/image-test_case2-4.png)
+![image-test_case2-4](../assets/image-test_case2-4.png)
 
 - Summary of results
 
@@ -795,29 +795,29 @@ Verify cross-region data center-level failover capability, with RTO ≤ 90s and 
 
 - The backup center DC-B releases a portion of the traffic to DC-A.
 
-![image-test_case2-5](images.assets/image-test_case2-5.png)
+![image-test_case2-5](../assets/image-test_case2-5.png)
 
 Service Request Success Rate 
 
-![image-test_case2-6](images.assets/image-test_case2-6.png)
+![image-test_case2-6](../assets/image-test_case2-6.png)
 
 P99 Service Latency
 
-![image-test_case2-7](images.assets/image-test_case2-7.png)
+![image-test_case2-7](../assets/image-test_case2-7.png)
 
 
 
 - The primary center DC-A gradually takes over the traffic.
 
-![image-test_case2-8](images.assets/image-test_case2-8.png)
+![image-test_case2-8](../assets/image-test_case2-8.png)
 
 Service Request Success Rate 
 
-![image-test_case2-9](images.assets/image-test_case2-9.png)
+![image-test_case2-9](../assets/image-test_case2-9.png)
 
 P99 Service Latency
 
-![image-test_case2-10](images.assets/image-test_case2-10.png)
+![image-test_case2-10](../assets/image-test_case2-10.png)
 
 
 
@@ -834,7 +834,7 @@ P99 Service Latency
 
 ## 4.1 Test Goals
 
-![image-20250527194217439](images.assets/image-20250527194217439.png)
+![image-20250527194217439](../assets/image-20250527194217439.png)
 
 Verify the dual - center core cluster application single - node failure data failover capability.
 
@@ -868,15 +868,15 @@ Verify the dual - center core cluster application single - node failure data fai
 
 - After powering off the dbs-dca-c4 cluster, the traffic is switched to another cluster in the same region.
 
-![image-test_case3-1](images.assets/image-test_case3-1.png)
+![image-test_case3-1](../assets/image-test_case3-1.png)
 
 Service Request Success Rate 
 
-![image-test_case3-2](images.assets/image-test_case3-2.png)
+![image-test_case3-2](../assets/image-test_case3-2.png)
 
 P99 Service Latency
 
-![image-test_case3-3](images.assets/image-test_case3-3.png)
+![image-test_case3-3](../assets/image-test_case3-3.png)
 
 
 
@@ -898,15 +898,15 @@ P99 Service Latency
 
 - The traffic is load-balanced between the two clusters(dbs-dca-c3,dbs-dca-c4) in the same region.
 
-![image-test_case3-4](images.assets/image-test_case3-4.png)
+![image-test_case3-4](../assets/image-test_case3-4.png)
 
 Service Request Success Rate
 
-![image-test_case3-5](images.assets/image-test_case3-5.png)
+![image-test_case3-5](../assets/image-test_case3-5.png)
 
 P99 Service Latency 
 
-![image-test_case3-6](images.assets/image-test_case3-6.png)
+![image-test_case3-6](../assets/image-test_case3-6.png)
 
 
 
@@ -945,15 +945,15 @@ spec:
 
 - Traffic from the core cluster is taken over by the warm-standby cluster.
 
-![image-test_case3-7](images.assets/image-test_case3-7.png)
+![image-test_case3-7](../assets/image-test_case3-7.png)
 
 Service Request Success Rate 
 
-![image-test_case3-8](images.assets/image-test_case3-8.png)
+![image-test_case3-8](../assets/image-test_case3-8.png)
 
 P99 Service Latency
 
-![image-test_case3-9](images.assets/image-test_case3-9.png)
+![image-test_case3-9](../assets/image-test_case3-9.png)
 
 - Summary of results
 
@@ -969,7 +969,7 @@ P99 Service Latency
 
 ## 5.1 Test Goals
 
-![image-20250527194125555](images.assets/image-20250527194125555.png)
+![image-20250527194125555](../assets/image-20250527194125555.png)
 
 Verify the dual - center core cluster application single - node failure data failover capability.
 
@@ -1026,15 +1026,15 @@ spec:
 - Traffic is load-balanced across standby clusters in the same region.
   The traffic monitoring for the standby cluster in the same region.
 
-![image-test_case4-1](images.assets/image-test_case4-1.png)
+![image-test_case4-1](../assets/image-test_case4-1.png)
 
  Service Request Success Rate 
 
-![image-test_case4-2](images.assets/image-test_case4-2.png)
+![image-test_case4-2](../assets/image-test_case4-2.png)
 
 P99 Service Latency
 
-![image-test_case4-3](images.assets/image-test_case4-3.png)
+![image-test_case4-3](../assets/image-test_case4-3.png)
 
 
 
@@ -1052,7 +1052,7 @@ P99 Service Latency
 
 ## 6.1 Test Goals
 
-![image-20250527194146470](images.assets/image-20250527194146470.png)
+![image-20250527194146470](../assets/image-20250527194146470.png)
 
 Verify the service's minimal viable survival and same-region data failover capability, with RTO ≤ 90s and RPO = 0.
 
@@ -1109,15 +1109,15 @@ spec:
 
 - When a service fails, traffic is taken over by a warm-standby cluster in the same region.
 
-![image-test_case5-1](images.assets/image-test_case5-1.png)
+![image-test_case5-1](../assets/image-test_case5-1.png)
 
 Service request success rate
 
-![image-test_case5-2](images.assets/image-test_case5-2.png)
+![image-test_case5-2](../assets/image-test_case5-2.png)
 
 North-South Traffic P99 Service Latency (Cluster Grouping)
 
-![image-test_case5-3](images.assets/image-test_case5-3.png)
+![image-test_case5-3](../assets/image-test_case5-3.png)
 
 
 
