@@ -1,5 +1,6 @@
 declare module "virtual-post-data" {
   interface PostInfo {
+    id: string;
     title: string;
     route: string;
     path: string;

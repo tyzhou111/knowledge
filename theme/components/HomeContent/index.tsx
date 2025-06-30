@@ -35,11 +35,12 @@ export const HomeContent: React.FC = () => {
         const searched = (
           (results[0].result || []) as Array<{ link: string }>
         ).map(({ link }) => link.split(".html")[0]);
-
         const searchPosts = postInfos.filter((post) => {
-          return searched.some((link) => {
-            return post.route.endsWith(link);
-          });
+          return (
+            searched.some((link) => {
+              return post.route.endsWith(link);
+            }) || post.id === keyword
+          );
         });
 
         setSearchedPosts(searchPosts);

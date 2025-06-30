@@ -28,7 +28,7 @@ export const HomeBanner: React.FC<BannerProps> = ({ className }) => {
           {pageData.siteData.description}
         </p>
       </div>
-      <img width={240} src={logo}></img>
+      {/* <img width={240} src={logo}></img> */}
     </div>
   );
 };

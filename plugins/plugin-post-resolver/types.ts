@@ -3,6 +3,7 @@ export interface PluginOptions {
 }
 
 export interface PostInfo {
+  id: string;
   title: string;
   route: string;
   path: string;

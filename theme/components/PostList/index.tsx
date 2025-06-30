@@ -9,10 +9,6 @@ interface PostListProps {
   postList: PostInfo[];
 }
 
-const Empty = () => {
-  return;
-};
-
 export const PostList: FC<PostListProps> = ({ postList }) => {
   const t = useI18n();
 
@@ -27,7 +23,7 @@ export const PostList: FC<PostListProps> = ({ postList }) => {
           const badges = [...kinds, ...products];
           return (
             <LinkCard
-              style={{ marginBottom: "24px" }}
+              style={{ borderWidth: "0 0 1px 0 ", borderRadius: 0 }}
               title={post.title}
               description={
                 <>

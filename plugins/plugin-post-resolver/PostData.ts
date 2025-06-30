@@ -37,7 +37,6 @@ export function getPostInfo(
   });
 
   const createTime = dayjs(frontmatter.date) || dayjs();
-
   return {
     title: frontmatter.title || filename,
     route: routePath,
@@ -45,6 +44,7 @@ export function getPostInfo(
     date: createTime.format("YYYY-MM-DD HH:mm:ss"),
     kinds: normalizeTags(frontmatter.kind || frontmatter.kinds),
     products: normalizeTags(frontmatter.product || frontmatter.products),
+    id: frontmatter.id,
     excerpt: frontmatter.description || excerpt,
   };
 }

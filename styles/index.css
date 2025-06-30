@@ -45,7 +45,11 @@
 
 .paginationItem.disabled {
   cursor: not-allowed;
-  color:var(--rp-c-gray);
+  color: var(--rp-c-gray);
   background-color: transparent;
   border: none;
+}
+
+.rp-font-bold {
+  font-weight: 600;
 }

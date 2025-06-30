@@ -18,7 +18,7 @@ export default () => {
 
   return (
     <HomeLayout>
-      <HomeBanner className="flex items-stretch justify-between w-full mt-6 mb-4"></HomeBanner>
+      <HomeBanner className="flex items-stretch justify-between w-full mt-6 mb-20"></HomeBanner>
       <HomeContent></HomeContent>
       <footer className="rp-mt-12 rp-py-8 rp-px-6 sm:rp-p-8 rp-w-full rp-border-t rp-border-solid rp-border-divider-light">
         <div className="rp-m-auto rp-w-full rp-text-center">

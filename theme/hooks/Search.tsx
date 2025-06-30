@@ -35,7 +35,7 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
   const s = parseJson(
     sessionStorage.getItem("ac-knowledge-searchParams") || ""
   );
-  console.log("s", s);
+
   const [searchParams, setSearchParams] = useSearchParams(s || {});
   const [products, setProducts] = useState<Set<string>>(new Set(p));
   const [kinds, setKinds] = useState<Set<string>>(new Set(k));
