@@ -266,7 +266,7 @@ Assuming the ACP platform URL is *https://43.138.134.22*, and DeepFlow is instal
 
 Visit the Grafana URL in your browser, and you will see a login page:
 
-![Login Page](./assets-deepflow/login.png)
+![Login Page](../assets/deepflow/login.png)
 
 You can login to Grafana with the username and password specified in step 5. **We strongly recommend that you change Grafana's default password.**
 
@@ -274,11 +274,11 @@ You can login to Grafana with the username and password specified in step 5. **W
 
 In the Grafana web UI, enter the **Dashboards** menu:
 
-![Dashboards](./assets-deepflow/dashboards.png)
+![Dashboards](../assets/deepflow/dashboards.png)
 
 Enter the DeepFlow Templates folder, and you will see available dashboards:
 
-![Dashboards Folder](./assets-deepflow/dashboards-folder.png)
+![Dashboards Folder](../assets/deepflow/dashboards-folder.png)
 
 ### Troubleshooting with DeepFlow
 
@@ -288,21 +288,21 @@ Here are two example about how to troubleshoot DNS failure and chained HTTP requ
 
 If your application is facing DNS failures, you can open the **Distributed Tracing** dashboard:
 
-![Distributed Tracing](./assets-deepflow/distributed-tracing.png)
+![Distributed Tracing](../assets/deepflow/distributed-tracing.png)
 
 In the variable selections, choose namespace and workload of your application, and then input domain name; In the time settings, choose the time span you need.
 
 Here is an example:
 
-![](./assets-deepflow/dns-options.png)
+![](../assets/deepflow/dns-options.png)
 
 Click the **Refresh** button, and you can view DNS requests in the **Request List** panel:
 
-![DNS Request List](./assets-deepflow/dns-request-list.png)
+![DNS Request List](../assets/deepflow/dns-request-list.png)
 
 The DNS request domain and status are also available:
 
-![DNS Request Status](./assets-deepflow/dns-status.png)
+![DNS Request Status](../assets/deepflow/dns-status.png)
 
 > *Client Error* means the requested domain does not exist.
 
@@ -312,11 +312,11 @@ Assuming the are two HTTP GET requests chained with HTTP header *X-Request-ID*: 
 
 In the **Distributed Tracing** dashboard, you can see the request logs:
 
-![Request Logs](./assets-deepflow/http.png)
+![Request Logs](../assets/deepflow/http.png)
 
 Click the request log, and you can see a flame graph in the **DeepFlow Flame Graph** panel:
 
-![Flame Graph](./assets-deepflow/flame-graph.png)
+![Flame Graph](../assets/deepflow/flame-graph.png)
 
 > "S" means the request is captured on the system process side, and "N" means captured on network nic side.
 
@@ -327,4 +327,4 @@ The flame graph shows that:
 
 Click a span in the flame graph, you can see some more details, including start time, end time and status code:
 
-![Details](./assets-deepflow/flame-graph-details.png)
+![Details](../assets/deepflow/flame-graph-details.png)

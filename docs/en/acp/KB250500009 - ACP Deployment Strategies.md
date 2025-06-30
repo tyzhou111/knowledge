@@ -950,10 +950,10 @@ This triggers Flagger to start the canary analysis process.
 You can monitor the progress of the canary deployment through:
 
 1. Alauda Service Mesh UI to monitor metrics
-   ![alauda mesh ui](./assets/canary.png "canary deploy")
+   ![alauda mesh ui](../../assets/canary.png "canary deploy")
 
 2. The demo UI
-   ![demo ui](./assets/demo-gw.png "demo")
+   ![demo ui](../../assets/demo-gw.png "demo")
 
 3. Watching VirtualService changes
 
@@ -972,7 +972,7 @@ You can monitor the progress of the canary deployment through:
 7. Complete traffic migration
 8. Scale down canary deployment
 
-![flagger step](./assets/flagger-step.png "rollback button")
+![flagger step](../../assets/flagger-step.png "rollback button")
 
 #### Step 5: Promotion and rollback options
 
@@ -1011,10 +1011,10 @@ kubectl label ${CANARY_EVENT} action=rollback -n flagger-demo
 *UI Method:*
 
 1. View event history
-   ![event history](./assets/eventhistory.png "event history")
+   ![event history](../../assets/eventhistory.png "event history")
 
 2. Review specific events
-   ![event detail](./assets/eventdetail.png "event detail")
+   ![event detail](../../assets/eventdetail.png "event detail")
 
 *CLI Method:*
 
