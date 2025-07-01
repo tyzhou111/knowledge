@@ -1,0 +1,41 @@
+name: Build and Update
+
+on:
+  pull_request:
+    types: [opened, synchronize] 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # 必需：允许 push 到 PR
+      pull-requests: write 
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}  # 确保 checkout 到 PR 的分支
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 可根据项目调整
+
+      - name: Setup Yarn
+        run: |
+          corepack enable
+          yarn set version stable
+
+      - name: Upgrade dependencies
+        run: |
+          yarn up @alauda/doom
+          yarn up -R '**'
+
+      - name: Install dependencies (immutable)
+        run: yarn --immutable
+
+      - name: Build
+        run: yarn build
