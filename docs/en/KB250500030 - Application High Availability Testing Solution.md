@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Container Platform
+kind:
+   - Solution
+---
 # Application High Availability Testing Solution
 
 # 1. Test Environment Preparation
