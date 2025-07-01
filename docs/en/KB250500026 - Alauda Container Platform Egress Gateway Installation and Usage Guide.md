@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Container Platform
+kind:
+   - Solution
+---
 # Alauda Container Platform Egress Gateway Installation and Usage Guide
 
 ## Overview
