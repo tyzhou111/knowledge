@@ -2,7 +2,8 @@ name: Build and Update
 
 on:
   pull_request:
-    types: [opened, synchronize] 
+    types: [opened, synchronize]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -37,5 +38,17 @@ jobs:
       - name: Install dependencies (immutable)
         run: yarn --immutable
 
+      - name: generate id
+        run: ./add_id.sh docs/en/solutions
+
       - name: Build
         run: yarn build
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+          git commit -m "ci: update file from GitHub Action" || echo "Nothing to commit"
+          git push origin HEAD:${{ github.head_ref }}
