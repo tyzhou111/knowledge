@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Container Platform
+kind:
+   - Solution
+---
 # Full-Stack Automation with ACP
 
 This guide provides a step-by-step approach to **fully automate** the deployment of a Kubernetes cluster, **Alauda Service Mesh**, essential extensions (e.g., logging, monitoring, networking), and a sample application on the **ACP platform**. By harnessing **declarative YAML files**, this process eliminates manual intervention, ensuring consistency, repeatability, and efficiency. Whether using shell scripts, Ansible, or tools like Argo CD, this guide empowers you to streamline the entire workflow **from cluster creation to application rollout** with minimal effort.
