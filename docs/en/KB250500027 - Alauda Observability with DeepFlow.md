@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Container Platform
+kind:
+   - Solution
+---
 # Alauda Observability with DeepFlow
 
 ## Overview
