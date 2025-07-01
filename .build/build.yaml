@@ -117,3 +117,55 @@ spec:
             - commit=$(build.git.lastCommit.id)
         - name: container-image-tag
           value: $(tasks.generate-custom-version.results.custom-version)
+    - name: promote-staging-to-prod-cn
+      timeout: 20m
+      runAfter:
+        - build-image
+      params:
+        - name: container-image-tag
+          value: $(tasks.generate-custom-version.results.custom-version)
+      workspaces:
+        - name: source
+          workspace: source
+      retries: 3
+      taskSpec:
+        steps:
+          - image: build-harbor.alauda.cn/idp/docs-ops:main
+            name: promote-staging-to-prod-cn
+            imagePullPolicy: Always
+            workingDir: $(workspaces.source.path)
+            script: >
+              set -x
+
+              kubectl set image deployment/knowledge-docs product-docs=172.28.0.16:5000/middleware/knowledge:$(params.container-image-tag) --namespace alaudacloud  --server $PROD_KUBERNETES_SERVER --token $PROD_KUBERNETES_TOKEN --insecure-skip-tls-verify
+            env:
+              - name: PROD_KUBERNETES_SERVER
+                valueFrom:
+                  secretKeyRef:
+                    name: knowledge-k8s
+                    key: cn-server
+              - name: PROD_KUBERNETES_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: knowledge-k8s
+                    key: cn-token
+          - image: build-harbor.alauda.cn/idp/docs-ops:main
+            name: promote-staging-to-prod-io
+            imagePullPolicy: Always
+            workingDir: $(workspaces.source.path)
+            script: >
+              set -x
+
+              kubectl set image deployment/knowledge-docs product-docs=172.28.0.16:5000/middleware/knowledge:$(params.container-image-tag) --namespace alaudacloud  --server $PROD_KUBERNETES_SERVER --token $PROD_KUBERNETES_TOKEN --insecure-skip-tls-verify
+            env:
+              - name: PROD_KUBERNETES_SERVER
+                valueFrom:
+                  secretKeyRef:
+                    name: knowledge-k8s
+                    key: io-server
+              - name: PROD_KUBERNETES_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: knowledge-k8s
+                    key: io-token  
+
