@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Container Platform
+kind:
+   - Solution
+---
 # How to Create an Application on ACP Platform
 
 ## Overview
