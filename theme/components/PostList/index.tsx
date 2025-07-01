@@ -2,7 +2,7 @@ import { FC, useMemo } from "react";
 import { PostInfo } from "../../../plugins/plugin-post-resolver";
 import { Badge, LinkCard } from "rspress/theme";
 import { Marked } from "@ts-stack/markdown";
-import { useI18n } from "rspress/runtime";
+import { useI18n, usePageData } from "rspress/runtime";
 import EmptyState from "../Empty";
 
 interface PostListProps {
@@ -10,9 +10,11 @@ interface PostListProps {
 }
 
 export const PostList: FC<PostListProps> = ({ postList }) => {
-  const t = useI18n();
-
   const notEmpty = useMemo(() => postList.length > 0, [postList]);
+
+  const { siteData } = usePageData();
+
+  const { base } = siteData;
 
   return (
     <div>
@@ -35,13 +37,13 @@ export const PostList: FC<PostListProps> = ({ postList }) => {
                   <div className="flex mt-2">
                     {badges.map((badge) => (
                       <div className="mr-2">
-                        <Badge>{t(badge)}</Badge>
+                        <Badge>{badge}</Badge>
                       </div>
                     ))}
                   </div>
                 </>
               }
-              href={post.route}
+              href={`${base}${post.route}`.replaceAll("//", "/")}
               key={post.route}
             ></LinkCard>
           );

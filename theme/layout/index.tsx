@@ -32,7 +32,7 @@ const Badges = () => {
     <div className="flex">
       {badges.map((badge) => (
         <div className="mr-2">
-          <Badge>{t(badge)}</Badge>
+          <Badge>{badge}</Badge>
         </div>
       ))}
     </div>
@@ -55,8 +55,6 @@ export default () => {
   useEffect(() => {
     window.parent.postMessage(window.location.href, "*");
   }, []);
-
-  console.log(page);
 
   return (
     <SearchProvider>

@@ -67,7 +67,7 @@ export default forwardRef<HTMLInputElement, CheckboxProps>(
               transition-colors duration-200
             `}
           >
-            {t(label)}
+            {label}
           </span>
         )}
       </label>
