@@ -1,4 +1,5 @@
 ---
+id: KB250500018
 products: 
    - Alauda Service Mesh
 kind:

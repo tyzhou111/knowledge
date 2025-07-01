@@ -3,6 +3,7 @@ products:
    - Alauda Container Platform
 kind:
    - Solution
+id: KB250500013
 ---
 # Full-Stack Automation with ACP
 
