@@ -54,6 +54,10 @@ export const HomeContent: React.FC = () => {
     [initialized, siteData]
   );
 
+  if (keyword) {
+    searchFull(keyword);
+  }
+
   const finalPosts = useMemo(() => {
     const filterPosts = keyword === "" ? postInfos : searchedPosts;
     return filterPosts.filter((post) => {

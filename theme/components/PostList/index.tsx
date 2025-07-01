@@ -1,9 +1,10 @@
 import { FC, useMemo } from "react";
 import { PostInfo } from "../../../plugins/plugin-post-resolver";
-import { Badge, LinkCard } from "rspress/theme";
+import { Badge, LastUpdated, LinkCard } from "rspress/theme";
 import { Marked } from "@ts-stack/markdown";
 import { useI18n, usePageData } from "rspress/runtime";
 import EmptyState from "../Empty";
+import { DocID } from "../DocID";
 
 interface PostListProps {
   postList: PostInfo[];
@@ -35,12 +36,17 @@ export const PostList: FC<PostListProps> = ({ postList }) => {
                       __html: Marked.parse(post.excerpt),
                     }}
                   ></div>
+
                   <div className="flex mt-2">
                     {badges.map((badge) => (
                       <div className="mr-2">
                         <Badge>{badge}</Badge>
                       </div>
                     ))}
+                  </div>
+                  <div className="flex justify-between">
+                    <LastUpdated></LastUpdated>
+                    <DocID id={post.id}></DocID>
                   </div>
                 </>
               }
