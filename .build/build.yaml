@@ -156,7 +156,7 @@ spec:
             script: >
               set -x
 
-              kubectl set image deployment/knowledge-docs product-docs=172.28.0.16:5000/middleware/knowledge:$(params.container-image-tag) --namespace alaudacloud  --server $PROD_KUBERNETES_SERVER --token $PROD_KUBERNETES_TOKEN --insecure-skip-tls-verify
+              kubectl set image deployment/knowledge-docs product-docs=172.30.8.7:5000/middleware/knowledge:$(params.container-image-tag) --namespace alaudacloud  --server $PROD_KUBERNETES_SERVER --token $PROD_KUBERNETES_TOKEN --insecure-skip-tls-verify
             env:
               - name: PROD_KUBERNETES_SERVER
                 valueFrom:
