@@ -1,3 +1,10 @@
+---
+products: 
+   - Alauda Container Platform
+   - Alauda Service Mesh
+kind:
+   - Solution
+---
 # CI/CD Integration Example with Alauda Container Platform
 
 This document provides an example CI/CD pipeline integration for deploying applications on the Alauda Container Platform (ACP), using tools such as Argo Rollouts, Gateway API, and Skopeo. This is one of many possible approaches. Users are encouraged to adapt this example to fit their own deployment strategies and tools.
