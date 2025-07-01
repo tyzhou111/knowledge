@@ -1,3 +1,10 @@
+---
+products: 
+   - Alauda Container Platform
+   - Alauda DevOps
+kind:
+   - Solution
+---
 # Harbor Image Synchronization to Cluster Docker Registry
 
 This guide explains how to configure Harbor replication rules to automatically synchronize images from Harbor to Docker registries in clusters when new images are pushed.
