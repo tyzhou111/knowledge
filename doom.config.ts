@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { blogPostResolver } from "./plugins/plugin-post-resolver";
 
 export default defineConfig({
-  base: "/knowledge/",
+  base: "/static/knowledge/",
   title: "Alauda Knowledge",
   description:
     "Welcome back to Alauda's Knowledgebase information center. Find resources for resolving problems and troubleshooting.",

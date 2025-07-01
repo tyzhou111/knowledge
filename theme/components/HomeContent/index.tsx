@@ -8,6 +8,7 @@ import { postKinds } from "virtual-post-postKinds";
 import { PostList } from "../PostList";
 import Search from "../Search";
 import Pagination from "../Pagination";
+import { usePageData } from "rspress/runtime";
 
 const SEARCHED_LIMIT = 1000;
 const PAGE_SIZE = 10;
@@ -26,19 +27,23 @@ export const HomeContent: React.FC = () => {
 
   const { initialized, search } = useFullTextSearch();
   const [searchedPosts, setSearchedPosts] = useState<PostInfo[]>([]);
-
+  const { siteData } = usePageData();
   const searchFull = useCallback(
     async (keyword: string) => {
       onKeywordChange(keyword);
+      const { base } = siteData;
       if (initialized) {
         const results = await search(keyword, SEARCHED_LIMIT);
         const searched = (
           (results[0].result || []) as Array<{ link: string }>
-        ).map(({ link }) => link.split(".html")[0]);
+        ).map(({ link }) => {
+          return link.split(".html")[0];
+        });
         const searchPosts = postInfos.filter((post) => {
           return (
             searched.some((link) => {
-              return post.route.endsWith(link);
+              const route = link.replace(new RegExp(`^${base}`), "/");
+              return post.route.endsWith(route);
             }) || post.id === keyword
           );
         });
@@ -46,7 +51,7 @@ export const HomeContent: React.FC = () => {
         setSearchedPosts(searchPosts);
       }
     },
-    [initialized]
+    [initialized, siteData]
   );
 
   const finalPosts = useMemo(() => {

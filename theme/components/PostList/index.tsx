@@ -30,6 +30,7 @@ export const PostList: FC<PostListProps> = ({ postList }) => {
               description={
                 <>
                   <div
+                    className="line-clamp-2"
                     dangerouslySetInnerHTML={{
                       __html: Marked.parse(post.excerpt),
                     }}

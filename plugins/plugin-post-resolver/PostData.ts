@@ -2,7 +2,12 @@ import path from "node:path";
 import dayjs from "dayjs";
 import grayMatter from "gray-matter";
 import { PostInfo } from "./types";
-import { excerptFilter, generateRoutePath, normalizeTags } from "./utils";
+import {
+  excerptFilter,
+  extractTitle,
+  generateRoutePath,
+  normalizeTags,
+} from "./utils";
 
 export const postInfos: PostInfo[] = [];
 export const postProducts: string[] = [];
@@ -32,13 +37,18 @@ export function getPostInfo(
     return null;
   }
 
-  const { data: frontmatter, excerpt } = grayMatter.read(filepath, {
+  const {
+    data: frontmatter,
+    excerpt,
+    content,
+  } = grayMatter.read(filepath, {
     excerpt: excerptFilter,
   });
 
+  const contentTitle = extractTitle(content);
   const createTime = dayjs(frontmatter.date) || dayjs();
   return {
-    title: frontmatter.title || filename,
+    title: frontmatter.title || contentTitle || filename,
     route: routePath,
     path: filepath,
     date: createTime.format("YYYY-MM-DD HH:mm:ss"),
