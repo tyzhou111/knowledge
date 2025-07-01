@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Container Platform
+kind:
+   - Solution
+---
 # Software Supply Chain Security of Alauda Container Platform with Tekton and Kyverno
 
 ## Overview
