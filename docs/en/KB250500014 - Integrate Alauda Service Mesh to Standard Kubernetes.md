@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Service Mesh
+kind:
+   - Solution
+---
 # Integrate Alauda Service Mesh to Standard Kubernetes
 
 ## Overview
