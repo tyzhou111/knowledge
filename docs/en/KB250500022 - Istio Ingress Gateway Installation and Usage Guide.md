@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Service Mesh
+kind:
+   - Solution
+---
 # Istio Ingress Gateway Installation and Usage Guide
 
 ## Overview
