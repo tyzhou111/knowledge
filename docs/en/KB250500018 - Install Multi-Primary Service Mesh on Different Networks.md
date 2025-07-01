@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Service Mesh
+kind:
+   - Solution
+---
 # Installation Guide for Multi-Primary different network Service Mesh Architecture
 
 ## Overview
