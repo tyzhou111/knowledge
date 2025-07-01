@@ -3,6 +3,7 @@ products:
    - Alauda Service Mesh
 kind:
    - Solution
+id: KB250500014
 ---
 # Integrate Alauda Service Mesh to Standard Kubernetes
 

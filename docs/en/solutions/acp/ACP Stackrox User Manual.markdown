@@ -1,3 +1,6 @@
+---
+id: KB250500010
+---
 # ACP Security User Manual
 
 ## Overview

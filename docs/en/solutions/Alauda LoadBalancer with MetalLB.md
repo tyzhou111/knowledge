@@ -1,4 +1,5 @@
 ---
+id: KB250500024
 products: 
    - Alauda Container Platform
 kind:

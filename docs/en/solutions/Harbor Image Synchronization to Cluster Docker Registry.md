@@ -1,4 +1,5 @@
 ---
+id: KB250600014
 products: 
    - Alauda Container Platform
    - Alauda DevOps
