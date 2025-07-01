@@ -1,3 +1,9 @@
+---
+products: 
+   - Alauda Container Platform
+kind:
+   - Solution
+---
 ## Overview
 MetalLB offers an implementation of network load balancer(LoadBalancer type of Service) for on-prem Kubernetes cluster. It provides an externally-accessible IP address that client can send traffic to the corresponding Pods on your cluster. The externally-accessible IP is announced through standard ARP/NAD requests or BGP protocol to achieve a fast fail over or high availability.
 ## Prerequisites
