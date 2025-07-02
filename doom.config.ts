@@ -3,8 +3,8 @@ import { join } from "node:path";
 import { blogPostResolver } from "./plugins/plugin-post-resolver";
 
 export default defineConfig({
-  base: "/static/knowledge/",
   title: "Alauda Knowledge",
+  base: "/knowledge/",
   description:
     "Welcome back to Alauda's Knowledgebase information center. Find resources for resolving problems and troubleshooting.",
   logo: "/logo.svg",
@@ -15,16 +15,15 @@ export default defineConfig({
       postsDir: join(__dirname, "docs"),
     }),
   ],
-  ssg: false,
   themeConfig: {
     lastUpdated: true,
     footer: {
       message: "© 2025 Alauda Inc. All Rights Reserved.",
     },
   },
-  builderConfig:{
+  builderConfig: {
     output: {
-      assetPrefix: '/knowledge/',
+      assetPrefix: "/knowledge/",
     },
-  }
+  },
 });
