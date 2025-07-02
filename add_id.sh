@@ -15,10 +15,10 @@ mtime() {
 file_hash() {
   local f="$1"
   if command -v md5sum &>/dev/null; then
-    echo -n "$f" | md5sum | cut -c1-4
+    echo -n "$f" | md5sum | cut -c1-4 | tr 'a-f' 'A-F'
   else
     # macOS
-    echo -n "$f" | md5 -q | cut -c1-4
+    echo -n "$f" | md5 -q | cut -c1-4 | tr 'a-f' 'A-F'
   fi
 }
 
