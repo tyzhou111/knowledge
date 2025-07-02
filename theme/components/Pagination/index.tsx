@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import classnames from "classnames";
+import { useI18n } from "rspress/runtime";
 
 interface PaginationProps {
   currentPage: number;
@@ -14,6 +15,7 @@ interface PageItem {
 
 const Pagination = ({ currentPage, totalPage, onChange }: PaginationProps) => {
   const neighBorsNumber = 1;
+  const t = useI18n();
 
   const paginationItems = useMemo(() => {
     const items: Array<PageItem> = [];
@@ -81,7 +83,7 @@ const Pagination = ({ currentPage, totalPage, onChange }: PaginationProps) => {
           }
         }}
       >
-        Prev
+        {t("prev_page")}
       </span>
       {paginationItems.map((item, index) => (
         <span
@@ -114,7 +116,7 @@ const Pagination = ({ currentPage, totalPage, onChange }: PaginationProps) => {
           }
         }}
       >
-        Next
+        {t("next_page")}
       </span>
     </div>
   );

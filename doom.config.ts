@@ -6,7 +6,7 @@ export default defineConfig({
   title: "Alauda Knowledge",
   base: "/knowledge/",
   description:
-    "Welcome back to Alauda's Knowledgebase information center. Find resources for resolving problems and troubleshooting.",
+    "Welcome to Alauda's Knowledgebase information center. Find resources for resolving problems and troubleshooting.",
   logo: "/logo.svg",
   logoText: "Alauda Knowledge",
   globalStyles: join(__dirname, "styles/index.css"),
@@ -16,6 +16,7 @@ export default defineConfig({
     }),
   ],
   themeConfig: {
+    darkMode: false,
     lastUpdated: true,
     footer: {
       message: "© 2025 Alauda Inc. All Rights Reserved.",

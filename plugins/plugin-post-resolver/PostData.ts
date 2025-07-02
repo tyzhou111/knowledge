@@ -6,7 +6,9 @@ import {
   excerptFilter,
   extractTitle,
   generateRoutePath,
+  getGitLastUpdatedTimeStamp,
   normalizeTags,
+  transformTime,
 } from "./utils";
 
 export const postInfos: PostInfo[] = [];
@@ -19,10 +21,10 @@ export function resetPostInfo() {
   postInfos.length = 0;
 }
 
-export function getPostInfo(
+export async function getPostInfo(
   filepath: string,
   baseDir: string
-): PostInfo | null {
+): Promise<PostInfo | null> {
   let filename = path.basename(filepath.toString());
   const extname = path.extname(filename);
   if ([".mdx", ".md", ".html"].indexOf(extname) === -1) {
@@ -32,6 +34,10 @@ export function getPostInfo(
   const relativePath = path.relative(baseDir, filepath);
 
   const routePath = generateRoutePath(relativePath);
+
+  const lastUpdated = await getGitLastUpdatedTimeStamp(filepath);
+
+  const locale = routePath.split("/")[1];
 
   if (routePath === "/") {
     return null;
@@ -45,17 +51,23 @@ export function getPostInfo(
     excerpt: excerptFilter,
   });
 
+  if (frontmatter.pageType === "home") {
+    return null;
+  }
+
   const contentTitle = extractTitle(content);
   const createTime = dayjs(frontmatter.date) || dayjs();
   return {
     title: frontmatter.title || contentTitle || filename,
-    route: routePath.startsWith("/en") ? routePath.slice(3) : routePath,
+    route: locale === "en" ? routePath.slice(3) : routePath,
     path: filepath,
     date: createTime.format("YYYY-MM-DD HH:mm:ss"),
     kinds: normalizeTags(frontmatter.kind || frontmatter.kinds),
     products: normalizeTags(frontmatter.product || frontmatter.products),
     id: frontmatter.id,
     excerpt: frontmatter.description || excerpt,
+    locale,
+    lastUpdatedTime: transformTime(lastUpdated!, locale),
   };
 }
 

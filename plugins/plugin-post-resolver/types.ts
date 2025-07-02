@@ -11,4 +11,6 @@ export interface PostInfo {
   kinds: string[];
   products: string[];
   excerpt: string;
+  locale: string;
+  lastUpdatedTime: string;
 }

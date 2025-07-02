@@ -688,7 +688,7 @@ The benchmark test results serve as a crucial indicator for identifying abnormal
 
   The core cluster dbs-dca-c1 processes requests at 10 qps.
 
-<img src="../assets/image-test_case1-1.png" alt="image-test_case1-1"  />
+![image-test_case1-1](../assets/image-test_case1-1.png)
 
 
 

@@ -35,8 +35,8 @@ export function blogPostResolver(options?: PluginOptions): RspressPlugin {
     name: "@yangxiaolang/rspress-plugin-post-resolver",
     beforeBuild() {
       resetPostInfo();
-      traverseFolder(postsDir, (itemPath) => {
-        const postInfo = getPostInfo(itemPath as string, postsDir);
+      traverseFolder(postsDir, async (itemPath) => {
+        const postInfo = await getPostInfo(itemPath as string, postsDir);
         if (!postInfo) {
           return;
         }

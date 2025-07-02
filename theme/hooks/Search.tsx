@@ -1,9 +1,5 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import { APPEARANCE_KEY } from "@rspress/shared";
+import { createContext, useCallback, useContext, useState } from "react";
 import { useSearchParams } from "rspress/runtime";
 
 type SearchCondition = {

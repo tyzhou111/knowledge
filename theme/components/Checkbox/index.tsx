@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef, useRef } from "react";
+import { forwardRef } from "react";
 import { useI18n } from "rspress/runtime";
 
 export interface CheckboxProps {
@@ -23,7 +23,6 @@ export default forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
-    const t = useI18n();
 
     const handleChange = () => {
       onChange?.(label);

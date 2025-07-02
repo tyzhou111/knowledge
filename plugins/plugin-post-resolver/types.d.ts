@@ -8,6 +8,8 @@ declare module "virtual-post-data" {
     kinds: string[];
     products: string[];
     excerpt: string;
+    locale: string;
+    lastUpdatedTime: string;
   }
 
   const postInfos: PostInfo[];

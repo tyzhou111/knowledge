@@ -1,14 +1,14 @@
 import { useSearchContext } from "../../hooks/Search";
 import Checkbox from "../Checkbox";
 import { Card, useFullTextSearch } from "rspress/theme";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { PostInfo, postInfos } from "virtual-post-data";
 import { postProducts } from "virtual-post-postProducts";
 import { postKinds } from "virtual-post-postKinds";
 import { PostList } from "../PostList";
 import Search from "../Search";
 import Pagination from "../Pagination";
-import { usePageData } from "rspress/runtime";
+import { useI18n, usePageData } from "rspress/runtime";
 
 const SEARCHED_LIMIT = 1000;
 const PAGE_SIZE = 10;
@@ -27,11 +27,13 @@ export const HomeContent: React.FC = () => {
 
   const { initialized, search } = useFullTextSearch();
   const [searchedPosts, setSearchedPosts] = useState<PostInfo[]>([]);
-  const { siteData } = usePageData();
+  const { page, siteData } = usePageData();
+  const [searchInitialized, setSearchInitialized] = useState<Boolean[]>([]);
+  const t = useI18n();
+
   const searchFull = useCallback(
     async (keyword: string) => {
       onKeywordChange(keyword);
-      const { base } = siteData;
       if (initialized) {
         const results = await search(keyword, SEARCHED_LIMIT);
         const searched = (
@@ -39,27 +41,45 @@ export const HomeContent: React.FC = () => {
         ).map(({ link }) => {
           return link.split(".html")[0];
         });
-        const searchPosts = postInfos.filter((post) => {
-          return (
-            searched.some((link) => {
-              const route = link.replace(new RegExp(`^${base}`), "/");
-              return post.route.endsWith(route);
-            }) || post.id === keyword
-          );
-        });
+        const searchPosts = postInfos
+          .filter((post) => post.locale === page.lang)
+          .filter((post) => {
+            return (
+              searched.some((link) => {
+                const route = link.replace(
+                  new RegExp(`^${siteData.base}`),
+                  "/"
+                );
+                return post.route.endsWith(route);
+              }) || post.id === keyword
+            );
+          });
 
         setSearchedPosts(searchPosts);
       }
     },
-    [initialized, siteData]
+    [initialized, siteData.base, page.lang, search]
   );
 
-  if (keyword) {
-    searchFull(keyword);
-  }
+  useEffect(() => {
+    if (searchInitialized.at(-1) === initialized) {
+      history.go(0);
+      return;
+    }
+    setSearchInitialized([...searchInitialized, initialized]);
+  }, [initialized, page.lang]);
+
+  useEffect(() => {
+    if (keyword) {
+      searchFull(keyword);
+    }
+  }, [page.lang]);
 
   const finalPosts = useMemo(() => {
-    const filterPosts = keyword === "" ? postInfos : searchedPosts;
+    const filterPosts =
+      keyword === ""
+        ? postInfos.filter((post) => post.locale === page.lang)
+        : searchedPosts;
     return filterPosts.filter((post) => {
       const productsMatch =
         Array.from(products).every((product) =>
@@ -71,7 +91,7 @@ export const HomeContent: React.FC = () => {
 
       return productsMatch && kindsMatch;
     });
-  }, [products, kinds, keyword, searchedPosts]);
+  }, [products, kinds, keyword, searchedPosts, page]);
 
   const totalPage = useMemo(
     () => Math.ceil(finalPosts.length / PAGE_SIZE),
@@ -125,7 +145,7 @@ export const HomeContent: React.FC = () => {
       <div className="flex-1/4 mr-6 sticky">
         <Card
           style={{ marginBottom: "24px" }}
-          title="Products"
+          title={t("doc_products")}
           content={
             <>
               {postProducts.map((product) => (
@@ -142,7 +162,7 @@ export const HomeContent: React.FC = () => {
         ></Card>
         <Card
           style={{ marginBottom: "24px" }}
-          title="Kinds"
+          title={t("doc_kinds")}
           content={
             <>
               {postKinds.map((kind) => (
@@ -162,6 +182,7 @@ export const HomeContent: React.FC = () => {
         <Search
           className="mb-4"
           value={keyword}
+          placeholder={t("search_placeholder")}
           onSearch={(keyword) => searchFull(keyword)}
         ></Search>
         <PostList postList={currentPageData}></PostList>

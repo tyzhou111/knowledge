@@ -1,5 +1,5 @@
 import { Badge, LastUpdated, Layout } from "rspress/theme";
-import { useI18n, usePageData } from "rspress/runtime";
+import { usePageData } from "rspress/runtime";
 import { useEffect, useMemo } from "react";
 import HomeLayout from "./HomeLayout";
 import { EditOnGithub } from "../components/EditOnGithub";

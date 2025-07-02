@@ -1,6 +1,7 @@
 import path from "node:path";
 import { Marked } from "@ts-stack/markdown";
 import * as cheerio from "cheerio";
+import { execa } from "execa";
 
 export function normalizeTags(tags: string | string[]): string[] {
   if (!tags) {
@@ -138,4 +139,24 @@ function extractUntilNextHeading(
 function isHeadingElement(element: cheerio.Cheerio<any>): boolean {
   const tagName = element[0]?.tagName?.toLowerCase() || "";
   return ["h1", "h2", "h3", "h4", "h5", "h6"].includes(tagName);
+}
+
+export async function getGitLastUpdatedTimeStamp(filePath: string) {
+  let lastUpdated;
+  try {
+    const { stdout } = await execa("git", [
+      "log",
+      "-1",
+      "--format=%at",
+      filePath,
+    ]);
+    lastUpdated = Number(stdout) * 1000;
+  } catch (_e) {
+    /* noop */
+  }
+  return lastUpdated;
+}
+
+export function transformTime(timestamp: number, lang: string) {
+  return new Date(timestamp).toLocaleString(lang || "zh");
 }

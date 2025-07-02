@@ -9,7 +9,7 @@ interface EmptyStateProps {
 }
 
 const EmptyState = ({
-  title = "No Post",
+  title = "No Docs",
   description = "",
   action,
   className = "",

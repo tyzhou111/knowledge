@@ -1,0 +1,42 @@
+{
+    "knowledge_title": {
+        "en": "Alauda Knowledge",
+        "zh": "灵雀云知识库"
+    },
+    "knowledge_description": {
+        "en": "Welcome to Alauda's Knowledgebase information center. Find resources for resolving problems and troubleshooting.",
+        "zh": "欢迎访问 Alauda 的知识库信息中心。查找解决问题和排除故障的资源。"
+    },
+    "doc_kinds": {
+        "en": "Kinds",
+        "zh": "类别"
+    },
+    "doc_products": {
+        "en": "Products",
+        "zh": "相关产品"
+    },
+    "search_placeholder": {
+        "en": "Search By ID or Content",
+        "zh": "按 ID 或内容搜索"
+    },
+    "empty_search": {
+        "en": "No Docs",
+        "zh": "无相关文档"
+    },
+    "prev_page": {
+        "en": "Prev",
+        "zh": "上一页"
+    },
+    "next_page": {
+        "en": "Next",
+        "zh": "下一页"
+    },
+    "edit_page": {
+        "en": "Edit this page",
+        "zh": "编辑此页"
+    },
+    "create_issue": {
+        "en": "Create an issue",
+        "zh": "登记一个问题"
+    }
+}
