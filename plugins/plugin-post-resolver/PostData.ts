@@ -49,7 +49,7 @@ export function getPostInfo(
   const createTime = dayjs(frontmatter.date) || dayjs();
   return {
     title: frontmatter.title || contentTitle || filename,
-    route: routePath,
+    route: routePath.startsWith("/en") ? routePath.slice(3) : routePath,
     path: filepath,
     date: createTime.format("YYYY-MM-DD HH:mm:ss"),
     kinds: normalizeTags(frontmatter.kind || frontmatter.kinds),
