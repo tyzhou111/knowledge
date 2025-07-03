@@ -2,7 +2,7 @@
   "name": "doomslayer",
   "packageManager": "yarn@4.9.2",
   "devDependencies": {
-    "@alauda/doom": "^1.7.1",
+    "@alauda/doom": "^1.8.1",
     "@rspress/shared": "npm:2.0.0-beta.14",
     "@tailwindcss/postcss": "^4.1.8",
     "@ts-stack/markdown": "^1.5.0",

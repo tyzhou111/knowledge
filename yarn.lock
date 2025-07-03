@@ -5,9 +5,9 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@alauda/doom@npm:^1.7.1":
-  version: 1.7.1
-  resolution: "@alauda/doom@npm:1.7.1"
+"@alauda/doom@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "@alauda/doom@npm:1.8.1"
   dependencies:
     "@cspell/eslint-plugin": "npm:^8.19.4 || ^9.1.1"
     "@eslint-react/eslint-plugin": "npm:^1.52.2"
@@ -65,7 +65,7 @@ __metadata:
     yoctocolors: "npm:^2.1.1"
   bin:
     doom: lib/cli/index.js
-  checksum: 10c0/d62196dbdcf489c60f70b54934d0ed1992a6eeff66f550e625df36222cb119118ae75c7c5bcca2d720040cde5b7d922823566b7bff59c4e807396b8a8338fb38
+  checksum: 10c0/bff9277ccc2a956fed01e8e2b202580dc54a2605102241d1868d1ee73ccd241277ef1171a9a947aa58b18b545dbabe16718dc175a5a2cd17ebcb7c22342cdaec
   languageName: node
   linkType: hard
 
@@ -4964,7 +4964,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "doomslayer@workspace:."
   dependencies:
-    "@alauda/doom": "npm:^1.7.1"
+    "@alauda/doom": "npm:^1.8.1"
     "@rspress/shared": "npm:2.0.0-beta.14"
     "@tailwindcss/postcss": "npm:^4.1.8"
     "@ts-stack/markdown": "npm:^1.5.0"
