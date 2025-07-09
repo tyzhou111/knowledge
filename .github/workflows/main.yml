@@ -1,7 +1,11 @@
 name: Build and Update
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
     types: [opened, synchronize]
@@ -12,6 +16,7 @@ on:
 
 jobs:
   build:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     runs-on: ubuntu-latest
     environment: translate
     env:
@@ -24,11 +29,11 @@ jobs:
       pull-requests: write 
 
     steps:
-      - name: Checkout PR branch
+      - name: Checkout 
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}  # 确保 checkout 到 PR 的分支
-          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -52,17 +57,24 @@ jobs:
         run: ./add_id.sh docs/en/solutions
 
       - name: translate
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: yarn translate -s en -t zh -g "*"
 
       - name: Build
         run: yarn build
 
-      - name: Commit and push changes
+      - name: Commit 
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add -A
-          git commit -m "ci: update file from GitHub Action" || echo "Nothing to commit"
-          git push origin HEAD:${{ github.head_ref }}
+          git commit -m "ci: update file from GitHub Action [skip ci]" || echo "Nothing to commit"
+      
+      - name: Push changes
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: ad-m/github-push-action@master
+        with:
+          branch: ${{ github.ref }}
+          github_token: ${{ secrets.KNOWLEDGE_SECRET }}
