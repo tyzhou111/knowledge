@@ -54,7 +54,7 @@ jobs:
         run: yarn --immutable
 
       - name: generate id
-        run: ./add_id.sh docs/en/solutions
+        run: ./add_id.sh docs/en/solutions && ./add_id.sh docs/en/articles
 
       - name: translate
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

@@ -58,14 +58,14 @@ add_full_frontmatter() {
 }
 
 # 主逻辑
+files=()
 for target in "$@"; do
   if [ -d "$target" ]; then
-    files=()
     while IFS= read -r file; do
       files+=("$file")
     done < <(find "$target" -type f -name '*.md')
   else
-    files=("$target")
+    files+=("$target")
   fi
 
   for f in "${files[@]}"; do
