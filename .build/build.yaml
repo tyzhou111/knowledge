@@ -86,10 +86,6 @@ spec:
 
               yarn set version stable
 
-              yarn up @alauda/doom
-
-              yarn up -R '**'
-
               yarn --immutable
 
               yarn build

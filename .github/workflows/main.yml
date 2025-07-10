@@ -45,10 +45,10 @@ jobs:
           corepack enable
           yarn set version stable
 
-      - name: Upgrade dependencies
-        run: |
-          yarn up @alauda/doom
-          yarn up -R '**'
+      # - name: Upgrade dependencies
+      #   run: |
+      #     yarn up @alauda/doom
+      #     yarn up -R '**'
 
       - name: Install dependencies (immutable)
         run: yarn --immutable
