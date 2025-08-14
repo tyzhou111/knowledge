@@ -1,45 +1,49 @@
 ---
 id: KB1755151564-C9F6
 products:
-   - Alauda Container Platform
+  - Alauda Container Platform
 kind:
-   - Solution
+  - Solution
+sourceSHA: 5500ea6474bcca57c6052d90a43bfcc9342aa26cce5e3a0d2e810c22a98e9b84
 ---
 
-# How to Deploy Platform Components on Selected Nodes
+# 如何在选定节点上部署平台组件
 
-## Issue
+## 问题
 
-Platform components are required to run on dedicated nodes to isolate them from application workloads, enabling differentiated resource allocation and operational assurance for different types of workloads.
+平台组件需要在专用节点上运行，以将其与应用工作负载隔离，从而为不同类型的工作负载提供差异化的资源分配和操作保障。
 
-## Environment
+## 环境
 
 v4.0.x
 
-## Resolution
+## 解决方案
 
-### 1. Add the following labels to the selected nodes
+### 1. 将以下标签添加到选定节点
 
 ```yaml
 cpaas-system-alb: ""
 node-role.kubernetes.io/cpaas-system: "true"
 ```
 
-Execute the following command on the workload cluster:
+在业务集群上执行以下命令：
+
 ```shell
 kubectl label nodes NODE_NAME cpaas-system-alb="" node-role.kubernetes.io/cpaas-system=true
 ```
 
-### 2. Modify ConfigMap cluster-module-config
+### 2. 修改 ConfigMap cluster-module-config
 
-Change the content of platformNodeSelector under globalConfig and platformConfig to '{"node-role.kubernetes.io/cpaas-system": "true"}'
+将 globalConfig 和 platformConfig 下的 platformNodeSelector 内容更改为 '{"node-role.kubernetes.io/cpaas-system": "true"}'
 
-Execute the following command on the global cluster:
+在全球集群上执行以下命令：
+
 ```shell
 kubectl edit configmaps -n cpaas-system cluster-module-config
 ```
 
-Reference the following content for modification:
+参考以下内容进行修改：
+
 ```yaml
 ---
 apiVersion: v1
@@ -49,7 +53,7 @@ data:
       global:
         ......
 
-# CHANGE the following content
+# 更改以下内容
         <<- if (and .IsGlobal .PlatformNodeSelector) >>
         nodeSelector:
           <<- range $key, $val := .PlatformNodeSelector >>
@@ -58,63 +62,63 @@ data:
         <<- else >>
         nodeSelector: {}
         <<- end >>
-# TO:
+# 更改为：
         nodeSelector:
           "node-role.kubernetes.io/cpaas-system": "true"
-# END
+# 结束
         ......
 
     platformConfig: |
       global:
         ......
-# CHANGE the following content
+# 更改以下内容
         <<- if (and .IsGlobal .PlatformNodeSelector) >>
         nodeSelector:
           <<- range $key, $val := .PlatformNodeSelector >>
             << $key >>: << $val | quote >>
           <<- end >>
         <<- end >>
-# TO:
+# 更改为：
         nodeSelector:
           "node-role.kubernetes.io/cpaas-system": "true"
-# END
+# 结束
     ......
 ```
 
-### 3. Wait for all components on workload clusters to update completely
+### 3. 等待业务集群上的所有组件完全更新
 
-Check the status on the workload cluster using the following command:
+使用以下命令检查业务集群的状态：
 
 ```shell
 kubectl get appreleases -n cpaas-system -w
 ```
 
-### 4. Reschedule alb
+### 4. 重新调度 alb
 
-Usually, the alb label will be added to control plane nodes. Remove the label from control plane nodes on the workload cluster using the following command:
+通常，alb 标签会添加到控制平面节点。使用以下命令从业务集群的控制平面节点中移除该标签：
 
 ```shell
 kubectl label nodes NODE_NAME cpaas-system-alb-
 ```
 
-Restart all alb Pods on the workload cluster using the following command:
+使用以下命令重启业务集群上的所有 alb Pods：
 
 ```shell
 kubectl delete pods -n cpaas-system -l service_name=alb2-cpaas-system
 ```
 
-If an external load balancer is used to proxy port 11780, the backend server configuration of the external load balancer must also be updated to include the new nodes.
+如果使用外部负载均衡器代理端口 11780，则外部负载均衡器的后端服务器配置也必须更新以包含新节点。
 
-### 5. Verification
+### 5. 验证
 
-Execute the following command on the workload cluster to verify that Pods have been rescheduled to the specified nodes:
+在业务集群上执行以下命令以验证 Pods 是否已重新调度到指定节点：
 
 ```shell
 kubectl get pods -n cpaas-system -o wide
 kubectl get pods -n cert-manager -o wide
 ```
 
-Output example is shown below. Please ensure the values in the NODE column are as expected.
+输出示例如下所示。请确保 NODE 列中的值符合预期。
 
 ```shell
 NAME                                       READY   STATUS    RESTARTS   AGE    IP           NODE             NOMINATED NODE   READINESS GATES

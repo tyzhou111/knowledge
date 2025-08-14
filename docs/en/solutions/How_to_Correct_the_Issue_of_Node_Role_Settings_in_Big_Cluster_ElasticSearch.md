@@ -1,4 +1,5 @@
 ---
+id: KB1755151564-5F22
 products: 
    - Alauda Container Platform
 kind:
