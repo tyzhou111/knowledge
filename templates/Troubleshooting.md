@@ -11,7 +11,7 @@ products:
 ProductsVersion:
    - 4.1.0,4.2.x
 ---
-
+<!-- A type of document that involves encountering a fault, diagnosing it, performing root cause analysis, and providing solutions. -->
 # \[Troubleshooting name\]
 
 ## Symptoms
