@@ -8,7 +8,7 @@ products:
    - Alauda Application Services
    - Alauda Service Mesh
    - Alauda Developer Portal
-Products version:
+ProductsVersion:
    - 4.1.0
 ---
 
