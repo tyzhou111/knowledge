@@ -1,6 +1,6 @@
 ---
 kind:
-   - How to
+   - How To
 products: 
    - Alauda Container Platform
    - Alauda DevOps
