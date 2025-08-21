@@ -9,7 +9,7 @@ products:
    - Alauda Service Mesh
    - Alauda Developer Portal
 ProductsVersion:
-   - 4.1.0
+   - 4.1.0,4.2.x
 ---
 
 # \[Troubleshooting name\]
