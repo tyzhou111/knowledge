@@ -1,34 +1,33 @@
 ---
+kind:
+   - Troubleshooting
 products: 
-   - Alauda Container Platform
    - Alauda Container Platform
    - Alauda DevOps
    - Alauda AI
    - Alauda Application Services
    - Alauda Service Mesh
    - Alauda Developer Portal
-kind:
-   - Solution
+Products version:
+   - 4.1.0
 ---
 
-# \[Solution name\]
+# \[Troubleshooting name\]
 
-## Issue
+## Symptoms
 
-Specify the problem(s) this solution addresses or applicable scenarios. Required field.
+This paragraph is a description of the error phenomenon.
 
-## Environment
+## Cause
 
-Describe the platform version and the corresponding plugin version. Required field.
+Analyze the cause of the corresponding error.
 
 ## Resolution
 
-Describe the specific solution to address this scenario or problem.Required field.
+Solution to the corresponding phenomenon.
+    
+## [workaround]
 
-## Root Cause
+If there is no solution, a temporary workaround should be provided here. For example, if a bridge is broken and cannot be crossed, and the bridge cannot be repaired immediately, a solution for crossing the river is needed, such as taking a boat.
 
-Root cause of this issue. Optional field.
-
-## Diagnostic Steps
-
-What are the specific diagnostic steps for this issue, and how can I confirm if there are related problems in my environment? Optional filed.
+## [Related Information]
